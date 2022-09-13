@@ -1,0 +1,13 @@
+apiVersion: shipwright.io/v1alpha1
+kind: BuildRun
+metadata:
+  name: {{ include "appchart.fullname" . }}-{{ .Values.image.tag | default .Chart.AppVersion | trunc 10 }}
+  annotations:
+    "helm.sh/hook": "pre-install,pre-upgrade"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+    "helm.sh/hook-weight": "1"
+spec:
+  buildRef:
+    name: {{ include "appchart.fullname" . }}
+  output:
+    image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}

@@ -1,0 +1,18 @@
+apiVersion: shipwright.io/v1alpha1
+kind: Build
+metadata:
+  name: {{ include "appchart.fullname" . }}
+  annotations:
+    "helm.sh/hook": "pre-install,pre-upgrade"
+    "helm.sh/hook-delete-policy": "before-hook-creation"
+    "helm.sh/hook-weight": "0"
+spec:
+  source:
+    url: https://github.com/pet2cattle/argocd-pullreqgenerator-demo
+    contextDir: app
+    revision: {{ .Values.image.tag | default .Chart.AppVersion }}
+  strategy:
+    name: kaniko
+    kind: ClusterBuildStrategy
+  output:
+    image: registry.kube-system.svc.cluster.local/demoapp:latest

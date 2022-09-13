@@ -1,0 +1,10 @@
+server:
+  extraArgs:
+   - --insecure
+
+  ingress:
+    enabled: true
+    https: false
+
+    hosts:
+    - "argocd.127.0.0.1.nip.io"

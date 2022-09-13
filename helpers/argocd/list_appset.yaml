@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: list-versions
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - target: HEAD
+        instance: latest
+      - target: "1.0"
+        instance: v1
+  template:
+    metadata:
+      name: "demoapp-{{ instance }}"
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=false
+      source:
+        repoURL: https://github.com/pet2cattle/argocd-pullreqgenerator-demo.git
+        targetRevision: "{{ target }}"
+        path: charts/appchart
+        helm:
+          values: |
+            ingress:
+              enabled: true
+              hosts:
+                - host: "{{ instance }}.127.0.0.1.nip.io"
+                  paths: []
+          parameters:
+          - name: image.tag
+            value: $ARGOCD_APP_REVISION
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: demoapp
