@@ -14,7 +14,7 @@ metadata:
 spec:
   provider:
     vault:
-      server: "http://testvault.testvault.svc.cluster.local:80"
+      server: "http://testvault.testvault.svc.cluster.local:8080"
       path: "secret"
       version: "v2"
       auth:
