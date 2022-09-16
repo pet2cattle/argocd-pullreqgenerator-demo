@@ -1,0 +1,6 @@
+apiVersion: s3.services.k8s.aws/v1alpha1
+kind: Bucket
+metadata:
+  name: k8s-demo-bucket
+spec:
+  name: testjordi-demo-bucket
