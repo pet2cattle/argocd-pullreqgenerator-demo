@@ -24,6 +24,7 @@ kubectl apply --filename https://github.com/shipwright-io/build/releases/downloa
 kubectl apply --filename https://github.com/shipwright-io/build/releases/download/v0.11.0/sample-strategies.yaml
 
 
+k create ns demoapp
 
 
 kubectl apply -f helpers/argocd -n argocd
