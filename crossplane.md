@@ -78,6 +78,9 @@ k describe rdsinstance.database.aws.crossplane.io/xplane-demo-rds
 k get secret xplane-con-secret -n crossplane-system
 
 
+awstools rds list
+
+
 
 
 ## composition
