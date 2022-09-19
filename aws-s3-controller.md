@@ -14,6 +14,10 @@ helm install s3controller tmp/s3-controller/helm/ -n aws-controllers
 export DEMO_AWS_DEFAULT_REGION=us-west-2
 ```
 
+(secrets/aws.sh)
+
+
+
 ## IRSA workaround
 
 ```
@@ -48,5 +52,13 @@ k delete -f helpers/s3controller
 awstools s3 list
 ```
 
+
+
+
+
+## uninstall
+
+
+helm uninstall s3controller -n aws-controllers
 
 

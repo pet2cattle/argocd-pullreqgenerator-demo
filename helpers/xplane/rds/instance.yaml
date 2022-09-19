@@ -1,0 +1,26 @@
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstance
+metadata:
+  name: xplane-demo-rds
+  namespace: crossplane-system
+  labels:
+    vpc: vpc-0c5f512bebf501af6
+spec:
+  providerConfigRef:
+    name: aws-provider
+  forProvider:
+    allocatedStorage: 20
+    dbInstanceClass: db.t4g.micro
+    dbName: xplanetest
+    vpcSecurityGroupIds:
+    - sg-02c59fe4cf4ccbac5
+    dbSubnetGroupName: awswebk3s
+    deletionProtection: false
+    engine: postgres
+    multiAZ: false
+    region: us-west-2
+    masterUsername: jordi
+    skipFinalSnapshotBeforeDeletion: true
+  writeConnectionSecretToRef:
+    name: xplane-con-secret
+    namespace: crossplane-system

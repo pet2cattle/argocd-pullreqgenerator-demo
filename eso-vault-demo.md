@@ -1,12 +1,5 @@
 
 
-## Install ESO
-
-```
-k create ns external-secrets
-helm repo add external-secrets https://charts.external-secrets.io
-helm install external-secrets external-secrets/external-secrets -n external-secrets --set installCRDs=true
-```
 
 ## Install in-cluster test vault
 
@@ -25,6 +18,11 @@ k exec -it testvault-vaultcli -- sh -c "echo test | vault login -; vault kv put 
 
 
 
-```
-k apply -f helpers/eso-vault/cluster-store.yaml
-```
+
+k apply -f helpers/eso/vault/cluster-store.yaml
+
+
+
+
+
+

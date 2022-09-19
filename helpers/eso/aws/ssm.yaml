@@ -1,0 +1,18 @@
+apiVersion: external-secrets.io/v1beta1
+kind: SecretStore
+metadata:
+  name: demo-ssm
+  namespace: external-secrets
+spec:
+  provider:
+    aws:
+      service: ParameterStore
+      region: us-west-2
+      auth:
+        secretRef:
+          accessKeyIDSecretRef:
+            name: aws-secret
+            key: access-key
+          secretAccessKeySecretRef:
+            name: aws-secret
+            key: secret
